@@ -1,0 +1,16 @@
+./provosion.sh
+docker-machine ls
+eval $(docker-machine env --swan swan-manager)
+docker info
+
+./provosion.sh --cleanup
+
+vi deploy.sh
+./deploy.sh up -d
+
+docker-compose ps
+./deploy.sh ps
+./deploy.sh port wordpress 80
+
+./deploy.sh scale wordpress=5
+./deploy.sh ps
